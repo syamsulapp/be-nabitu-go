@@ -1,27 +1,21 @@
 package main
 
 import (
+	"be-nabitu-go/configs"
 	"be-nabitu-go/routes"
 	"log"
 	"net/http"
 	"os"
-	"path/filepath"
 
 	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
+	"github.com/qinains/fastergoding"
 )
 
 func main() {
+	//hot reload
+	fastergoding.Run()
 	//config .env
-	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	if err != nil {
-		panic(err.Error())
-	}
-
-	envPath := filepath.Join(dir, ".env")
-	err = godotenv.Load(envPath)
-	log.Fatal(err)
-
+	configs.InitConfigEnv()
 	// setup mux router
 	router := mux.NewRouter()
 
@@ -29,6 +23,6 @@ func main() {
 	SubRouter := router.PathPrefix("api/v1").Subrouter()
 	routes.InitRouteProfile(router)
 	log.Println("Api is running with port:" + os.Getenv("GO_PORT"))
-	log.Fatalln(http.ListenAndServe(":8085", SubRouter))
+	log.Fatalln(http.ListenAndServe(os.Getenv("GO_PORT"), SubRouter))
 
 }
