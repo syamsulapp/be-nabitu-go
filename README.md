@@ -1,4 +1,4 @@
-# Nabitu
+# Introduce
 
 <h5> Welcome API Nabitu 1.0, build with golang version 1.22.2 and use extension GORM, migration, fastergoding(hot reload) and mux</h5>
 
