@@ -16,6 +16,8 @@ func main() {
 	fastergoding.Run()
 	//config .env
 	configs.InitConfigEnv()
+	//config db
+
 	// setup mux router
 	router := mux.NewRouter()
 
