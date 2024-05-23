@@ -5,7 +5,7 @@
 # Migrate Run
 
 ```bash
-migrate -database "ConnectionDB" -path database/migrations up
+migrate -database "mysql://nabituapi:nabituapi@tcp(localhost)/nabitu" -path database/migrations up
 ```
 
 # Setup ENV
