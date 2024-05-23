@@ -18,4 +18,5 @@ var InitRouteProfile = func(router *mux.Router) {
 		}
 		res.Write(loadIndexProfile)
 	}).Methods("GET")
+
 }
