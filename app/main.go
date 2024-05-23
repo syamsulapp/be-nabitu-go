@@ -20,8 +20,8 @@ func main() {
 	router := mux.NewRouter()
 
 	//setup router profile
-	SubRouter := router.PathPrefix("api/v1").Subrouter()
-	routes.InitRouteProfile(router)
+	SubRouter := router.PathPrefix("/api/v1").Subrouter()
+	routes.InitRouteProfile(SubRouter)
 	log.Println("Api is running with port:" + os.Getenv("GO_PORT"))
 	log.Fatalln(http.ListenAndServe(os.Getenv("GO_PORT"), SubRouter))
 

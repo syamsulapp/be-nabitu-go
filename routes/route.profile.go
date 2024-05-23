@@ -10,7 +10,7 @@ import (
 
 var InitRouteProfile = func(router *mux.Router) {
 	router.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
-		indexProfile := schemas.SchemaIndexProfile{Message: "halo world"}
+		indexProfile := schemas.SchemaIndexProfile{Message: "Welcome Nabitu API 1.0"}
 
 		loadIndexProfile, err := json.Marshal(indexProfile)
 		if err != nil {
