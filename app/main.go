@@ -2,6 +2,7 @@ package main
 
 import (
 	"be-nabitu-go/configs"
+	"be-nabitu-go/database"
 	"be-nabitu-go/routes"
 	"log"
 	"net/http"
@@ -17,10 +18,9 @@ func main() {
 	//config .env
 	configs.InitConfigEnv()
 	//config db
-
+	database.InitConnectionDB(configs.InitConfigDb())
 	// setup mux router
 	router := mux.NewRouter()
-
 	//setup router profile
 	SubRouter := router.PathPrefix("/api/v1").Subrouter()
 	routes.InitRouteProfile(SubRouter)
