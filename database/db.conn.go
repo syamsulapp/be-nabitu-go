@@ -11,7 +11,7 @@ var (
 	db *gorm.DB
 )
 
-func InitConnectionDB(dsn string) {
+func InitConnectionDBMysql(dsn string) {
 	var err error
 
 	d, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -23,6 +23,6 @@ func InitConnectionDB(dsn string) {
 	log.Println("Db successfully connect")
 }
 
-func GetDB() *gorm.DB {
+func GetDBMysql() *gorm.DB {
 	return db
 }

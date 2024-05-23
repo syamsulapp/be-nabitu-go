@@ -24,7 +24,7 @@ func main() {
 		DB_PASSWORD = os.Getenv("DB_PASSWORD")
 		DB_DATABASE = os.Getenv("DB_DATABASE")
 	)
-	database.InitConnectionDB(configs.InitConfigDb(DB_USERNAME, DB_PASSWORD, DB_HOSTS, DB_DATABASE))
+	database.InitConnectionDBMysql(configs.InitConfigDbMysql(DB_USERNAME, DB_PASSWORD, DB_HOSTS, DB_DATABASE))
 	// setup mux router
 	router := mux.NewRouter()
 	//setup router profile
