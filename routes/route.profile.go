@@ -1,27 +1,27 @@
 package routes
 
 import (
+	handlers "be-nabitu-go/handlers/profile"
+	repositorys "be-nabitu-go/repositorys/profile"
 	"be-nabitu-go/schemas"
-	"encoding/json"
-	"net/http"
+	services "be-nabitu-go/services/profile"
 
-	"github.com/gorilla/mux"
+	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
 )
 
-var InitRouteProfile = func(router *mux.Router) {
-	// define all handler profile
-	// resultGetAllProfileRepository := repositorys.RepositoryGetAllProfile
-	// resultGetAllProfileService := repositorys.RepositoryGetAllProfile
-	// resultGetAllProfileHandler := repositorys.RepositoryGetAllProfile
+func indexRoute(c *fiber.Ctx) error {
+	return c.JSON(schemas.SchemaIndexProfile{Message: "Welcome API Nabitu 1.0"})
+}
 
-	router.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
-		indexProfile := schemas.SchemaIndexProfile{Message: "Welcome Nabitu API 1.0"}
+var InitRouteProfile = func(app *fiber.App, db *gorm.DB) {
+	app.Get("/", indexRoute)
 
-		loadIndexProfile, err := json.Marshal(indexProfile)
-		if err != nil {
-			panic(err.Error())
-		}
-		res.Write(loadIndexProfile)
-	}).Methods("GET")
+	//list profile
+	resultProfileRepository := repositorys.NewRepositoryProfileResult(db)
+	resultProfileService := services.NewServiceProfileResult(resultProfileRepository)
+	resultProfileHandler := handlers.NewHandlerGetAllProfile(resultProfileService)
 
+	routerGroup := app.Group("/api/v1")
+	routerGroup.Get("/profile", resultProfileHandler.ResultProfileHandler)
 }

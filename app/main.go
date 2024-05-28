@@ -4,11 +4,9 @@ import (
 	"be-nabitu-go/configs"
 	"be-nabitu-go/database"
 	"be-nabitu-go/routes"
-	"log"
-	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
+	"github.com/gofiber/fiber/v2"
 	"github.com/qinains/fastergoding"
 )
 
@@ -20,11 +18,14 @@ func main() {
 	//config db
 	database.InitConnectionDBMysql(configs.InitConfigDbMysql())
 	// setup mux router
-	router := mux.NewRouter()
-	//setup router profile
-	SubRouter := router.PathPrefix("/api/v1").Subrouter()
-	routes.InitRouteProfile(SubRouter)
-	log.Println("Api is running with port:" + os.Getenv("GO_PORT"))
-	log.Fatalln(http.ListenAndServe(os.Getenv("GO_PORT"), SubRouter))
+	app := SetupRouter()
+	app.Listen(os.Getenv("GO_PORT"))
 
+}
+
+func SetupRouter() *fiber.App {
+	app := fiber.New()
+	db := database.GetDBMysql()
+	routes.InitRouteProfile(app, db)
+	return app
 }
