@@ -20,7 +20,7 @@ func InitConnectionDBMysql(dsn string) {
 	}
 	db = d
 
-	log.Println("Db successfully connect")
+	log.Println("DB Connect")
 }
 
 func GetDBMysql() *gorm.DB {
