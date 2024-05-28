@@ -11,10 +11,13 @@ import (
 )
 
 func main() {
-	//hot reload
-	fastergoding.Run()
 	//config .env
 	configs.InitConfigEnv()
+
+	if os.Getenv("GO_ENV") != "stagging" && os.Getenv("GO_ENV") != "production" {
+		//hot reload
+		fastergoding.Run()
+	}
 	//config db
 	database.InitConnectionDBMysql(configs.InitConfigDbMysql())
 	//cors
