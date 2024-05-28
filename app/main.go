@@ -17,6 +17,8 @@ func main() {
 	configs.InitConfigEnv()
 	//config db
 	database.InitConnectionDBMysql(configs.InitConfigDbMysql())
+	//cors
+	configs.CorsConfig()
 	// setup mux router
 	app := SetupRouter()
 	app.Listen(os.Getenv("GO_PORT"))
