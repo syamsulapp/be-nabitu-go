@@ -7,9 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var (
-	db *gorm.DB
-)
+var db *gorm.DB
 
 func InitConnectionDBMysql(dsn string) {
 	var err error
@@ -20,7 +18,7 @@ func InitConnectionDBMysql(dsn string) {
 	}
 	db = d
 
-	log.Println("DB Connect")
+	log.Println("DB Successfully Connect")
 }
 
 func GetDBMysql() *gorm.DB {

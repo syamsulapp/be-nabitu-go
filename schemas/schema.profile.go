@@ -1,5 +1,7 @@
 package schemas
 
+import "gorm.io/gorm"
+
 type SchemaIndexProfile struct {
 	Message string `json:"mesage"`
 }
@@ -10,10 +12,12 @@ type SchemaDatabaseError struct {
 }
 
 type Profiles struct {
+	gorm.Model
 	ID       string `json:"id"`
 	Fullname string `json:"name"`
 	Age      string `json:"age"`
 	Alamat   string `json:"alamat"`
+
 	// Jenis_Kelamin     string `json:"jenis_kelamin"`
 	// Tanggal_Lahir     string `json:"tanggal_lahir"`
 	// Tempat_Lahir      string `json:"tempat_lahir"`

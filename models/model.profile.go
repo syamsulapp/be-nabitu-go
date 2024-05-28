@@ -1,7 +1,17 @@
 package models
 
-import "be-nabitu-go/schemas"
+import (
+	"time"
 
-type Profiles struct {
-	schemas.Profiles
+	"gorm.io/gorm"
+)
+
+type Profile struct {
+	ID        string         `json:"id" gorm:"primaryKey"`
+	Fullname  string         `json:"name" form:"name"`
+	Age       string         `json:"age" form:"age"`
+	Alamat    string         `json:"alamat" form:"Alamat"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `json:"deleted_at" gorm:"index"`
 }
