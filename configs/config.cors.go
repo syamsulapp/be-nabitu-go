@@ -19,7 +19,7 @@ var CorsConfig = func() *fiber.App {
 			fiber.MethodDelete,
 			fiber.MethodPatch,
 		}, ","),
-		AllowHeaders:     "*",
+		AllowHeaders:     "Origin,Content-Type,Accept,Content-Length,Accept-Language,Accept-Encoding,Connection,Access-Control-Allow-Origin, XMLHttpRequest",
 		AllowCredentials: false,
 		MaxAge:           0,
 	}))
