@@ -11,7 +11,7 @@ type SchemaIndexProfile struct {
 }
 
 type Profile struct {
-	ID        string         `json:"id" gorm:"primaryKey"`
+	ID        int            `json:"id" gorm:"primaryKey"`
 	Fullname  string         `json:"name" form:"name"`
 	Age       string         `json:"age" form:"age"`
 	Alamat    string         `json:"alamat" form:"Alamat"`
