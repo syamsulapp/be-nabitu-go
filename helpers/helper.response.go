@@ -6,13 +6,16 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func APIResponse(ctx *fiber.Ctx, Message string, StatusCode int, Method string, Data interface{}) schemas.SchemaResponses {
+func ErrorResponse(ctx *fiber.Ctx, Message string) schemas.ErrorResponse {
+	return schemas.ErrorResponse{
+		Message: Message,
+	}
+}
 
-	return schemas.SchemaResponses{
-		StatusCode: StatusCode,
-		Method:     Method,
-		Message:    Message,
-		Data:       Data,
+func SuccessResponse(ctx *fiber.Ctx, Message string, Data interface{}) schemas.SuccessResponse {
+	return schemas.SuccessResponse{
+		Message: Message,
+		Data:    Data,
 	}
 
 }

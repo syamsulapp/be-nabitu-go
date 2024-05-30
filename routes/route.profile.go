@@ -17,4 +17,5 @@ var InitRouteProfile = func(app *fiber.App, db *gorm.DB) {
 
 	routerGroup := app.Group("/api/v1")
 	routerGroup.Get("/profile", handlers.ResultHandlerGetAllProfile)
+	routerGroup.Get("/profile/:id", handlers.ResultHandlerGetProfileByID)
 }
