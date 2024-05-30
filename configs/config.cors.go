@@ -11,7 +11,7 @@ var CorsConfig = func() *fiber.App {
 	app := fiber.New()
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*",
+		AllowOriginsFunc: func(origin string) bool { return true },
 		AllowMethods: strings.Join([]string{
 			fiber.MethodGet,
 			fiber.MethodPost,
@@ -20,7 +20,7 @@ var CorsConfig = func() *fiber.App {
 			fiber.MethodPatch,
 		}, ","),
 		AllowHeaders:     "Origin,Content-Type,Accept,Content-Length,Accept-Language,Accept-Encoding,Connection,Access-Control-Allow-Origin",
-		AllowCredentials: false,
+		AllowCredentials: true,
 		MaxAge:           0,
 	}))
 
