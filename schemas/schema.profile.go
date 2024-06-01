@@ -15,6 +15,7 @@ type Profile struct {
 	Fullname  string         `json:"name" form:"name"`
 	Age       string         `json:"age" form:"age"`
 	Alamat    string         `json:"alamat" form:"Alamat"`
+	UsersId   int            `json:"users_id"`
 	CreatedAt time.Time      `json:"created_at"`
 	UpdatedAt time.Time      `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `json:"deleted_at" gorm:"index"`
