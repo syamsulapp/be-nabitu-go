@@ -7,7 +7,7 @@ import (
 )
 
 func GetRegisterRepository(c *fiber.Ctx) error {
-	return repositoryAuth.ResultGetRegisterRepository(c)
+	return repositoryAuth.RegisterRepository(c)
 }
 
 func ResultGetRegisterServices(c *fiber.Ctx) error {
