@@ -4,6 +4,7 @@ import (
 	"be-nabitu-go/configs"
 	"be-nabitu-go/database"
 	"be-nabitu-go/routes"
+	"be-nabitu-go/schemas"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -28,9 +29,14 @@ func main() {
 
 }
 
+func indexRoute(c *fiber.Ctx) error {
+	return c.JSON(schemas.SchemaIndexProfile{Message: "Welcome API Nabitu 1.0"})
+}
+
 func SetupRouter() *fiber.App {
 	app := fiber.New()
-	db := database.GetDBMysql()
-	routes.InitRouteProfile(app, db)
+
+	app.Get("/", indexRoute)
+	routes.InitRouteAPI(app)
 	return app
 }
