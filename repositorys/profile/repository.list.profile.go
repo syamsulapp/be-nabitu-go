@@ -9,6 +9,6 @@ import (
 
 func RepositoryGetAllProfile(c *fiber.Ctx) error {
 	var Profile []models.Profile
-	database.GetDBMysql().Table("profile").Find(&Profile)
+	database.GetDBMysql().Find(&Profile)
 	return c.JSON(Profile)
 }
