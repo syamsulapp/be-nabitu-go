@@ -28,7 +28,7 @@ func main() {
 		log.Fatal(err)
 	}
 	t := configs.GetConfigTimeZone(time.Now())
-	log.Println(t)
+	log.Println(t.Format(os.Getenv("GO_TIMEZONE_FORMAT")))
 	//config db
 	database.InitConnectionDBMysql(configs.InitConfigDbMysql())
 	// setup mux router
