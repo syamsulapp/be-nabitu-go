@@ -4,7 +4,7 @@ CREATE TABLE users
     username        VARCHAR(128)    NOT NULL,
     email           VARCHAR(128)    NOT NULL,
     password        VARCHAR(128)    NOT NULL,
-    createt_at      TIMESTAMP       NULL,
+    created_at      TIMESTAMP       NULL,
     updated_at      TIMESTAMP       NULL,
     deleted_at      TIMESTAMP       NULL,
     PRIMARY KEY (id)

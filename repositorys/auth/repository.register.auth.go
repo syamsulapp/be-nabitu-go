@@ -23,5 +23,7 @@ func RegisterRepository(c *fiber.Ctx) error {
 	}
 
 	database.GetDBMysql().Create(&user)
+
 	return c.Status(200).JSON(helpers.SuccessResponse(c, "Berhasil Registrasi", user))
+
 }

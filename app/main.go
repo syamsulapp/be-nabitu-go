@@ -5,7 +5,9 @@ import (
 	"be-nabitu-go/database"
 	"be-nabitu-go/routes"
 	"be-nabitu-go/schemas"
+	"log"
 	"os"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/qinains/fastergoding"
@@ -21,6 +23,12 @@ func main() {
 	}
 	//config cors
 	configs.CorsConfig()
+	//config timezone
+	if err := configs.InitConfigTimeZone(os.Getenv("GO_TIMEZONE")); err != nil {
+		log.Fatal(err)
+	}
+	t := configs.GetConfigTimeZone(time.Now())
+	log.Println(t)
 	//config db
 	database.InitConnectionDBMysql(configs.InitConfigDbMysql())
 	// setup mux router
