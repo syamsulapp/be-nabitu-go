@@ -7,7 +7,8 @@ CREATE TABLE users
     created_at      TIMESTAMP       NULL,
     updated_at      TIMESTAMP       NULL,
     deleted_at      TIMESTAMP       NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE (email)
 )ENGINE = InnoDB;
 
 CREATE TABLE profiles
