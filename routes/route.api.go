@@ -22,6 +22,7 @@ var InitRouteAPI = func(app *fiber.App) {
 	//init profile route
 	profileRoute := routeGroup.Group("/profile")
 	profileRoute.Get("/", profile.ResultHandlerGetAllProfile)
+	profileRoute.Post("/", profile.ResultHandlerCreateProfile)
 	profileRoute.Get("/:id", profile.ResultHandlerGetProfileByID)
 
 }
