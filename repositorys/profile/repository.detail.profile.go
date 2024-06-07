@@ -11,7 +11,7 @@ import (
 func RepositoryGetProfileByID(c *fiber.Ctx) error {
 	id := c.Params("id")
 	var Profiles models.Profile
-	result := database.GetDBMysql().Table("profile").Find(&Profiles, id)
+	result := database.GetDBMysql().Find(&Profiles, id)
 
 	if result.RowsAffected != 0 {
 		return c.Status(200).JSON(helpers.SuccessResponse(c, "Successfully Data Details", Profiles))
