@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/qinains/fastergoding"
 )
 
@@ -21,8 +22,8 @@ func main() {
 		//hot reload
 		fastergoding.Run()
 	}
-	//config cors
-	configs.CorsConfig()
+	// //config cors
+	// configs.CorsConfig()
 	//config timezone
 	if err := configs.InitConfigTimeZone(os.Getenv("GO_TIMEZONE")); err != nil {
 		log.Fatal(err)
@@ -43,7 +44,7 @@ func indexRoute(c *fiber.Ctx) error {
 
 func SetupRouter() *fiber.App {
 	app := fiber.New()
-
+	app.Use(cors.New())
 	app.Get("/", indexRoute)
 	routes.InitRouteAPI(app)
 	return app
