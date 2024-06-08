@@ -1,11 +1,15 @@
 package handlers
 
-import "github.com/gofiber/fiber/v2"
+import (
+	services "be-nabitu-go/services/auth"
 
-func GetServiceAuthLogin(c *fiber.Ctx) {
+	"github.com/gofiber/fiber/v2"
+)
 
+func GetServiceAuthLogin(c *fiber.Ctx) error {
+	return services.ResultGetLoginServices(c)
 }
 
-func ResultGetServiceAuthLogin(c *fiber.Ctx) {
-
+func ResultHandleAuthLogin(c *fiber.Ctx) error {
+	return GetServiceAuthLogin(c)
 }

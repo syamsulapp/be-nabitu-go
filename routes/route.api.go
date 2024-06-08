@@ -14,6 +14,7 @@ var InitRouteAPI = func(app *fiber.App) {
 	//init auth user api
 	authUserRoute := routeGroup.Group("/auth/user")
 	authUserRoute.Post("/register", auth.ResultHandleAuthRegister)
+	authUserRoute.Post("/login", auth.ResultHandleAuthLogin)
 
 	//init auth admin api
 	// authAdminRoute := routeGroup.Group("/auth/admin")
