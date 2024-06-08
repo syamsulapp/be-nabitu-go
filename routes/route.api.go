@@ -3,6 +3,9 @@ package routes
 import (
 	auth "be-nabitu-go/handlers/auth"
 	profile "be-nabitu-go/handlers/profile"
+	user "be-nabitu-go/handlers/user"
+	"be-nabitu-go/middlewares"
+	"be-nabitu-go/pkg"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -25,5 +28,9 @@ var InitRouteAPI = func(app *fiber.App) {
 	profileRoute.Get("/", profile.ResultHandlerGetAllProfile)
 	profileRoute.Post("/", profile.ResultHandlerCreateProfile)
 	profileRoute.Get("/:id", profile.ResultHandlerGetProfileByID)
+
+	//init api get user for session
+	jwt := middlewares.InitMiddlewareAuth(pkg.Secret)
+	routeGroup.Get("/user", jwt, user.GetUser)
 
 }

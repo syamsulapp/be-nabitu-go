@@ -31,9 +31,12 @@ func LoginRepository(c *fiber.Ctx) error {
 
 	day := time.Hour * 24
 	claimsToken := jtoken.MapClaims{
-		"ID":       user.ID,
-		"username": user.Username,
-		"exp":      time.Now().Add(day * 1).Unix(),
+		"ID":         user.ID,
+		"username":   user.Username,
+		"email":      user.Email,
+		"created_at": user.Created_at,
+		"updated_at": user.Updated_at,
+		"exp":        time.Now().Add(day * 1).Unix(),
 	}
 	//create token
 	token := jtoken.NewWithClaims(jtoken.SigningMethodHS256, claimsToken)
@@ -46,6 +49,7 @@ func LoginRepository(c *fiber.Ctx) error {
 		"username": user.Username,
 		"email":    user.Email,
 		"token":    t,
+		"expire":   time.Now().Add(day * 1).Unix(),
 	}
 	return c.JSON(helpers.SuccessResponse(c, "Berhasil Login", res))
 }
