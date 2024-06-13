@@ -10,13 +10,13 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/qinains/fastergoding"
 )
 
 func main() {
 	//config .env
 	configs.InitConfigEnv()
+	configs.CorsConfig()
 
 	if os.Getenv("GO_ENV") != "stagging" && os.Getenv("GO_ENV") != "production" {
 		//hot reload
@@ -44,12 +44,6 @@ func indexRoute(c *fiber.Ctx) error {
 
 func SetupRouter() *fiber.App {
 	app := fiber.New()
-	app.Use(cors.New(cors.Config{
-		AllowHeaders:     "Origin,Content-Type,Accept,Content-Length,Accept-Language,Accept-Encoding,Connection,Access-Control-Allow-Origin",
-		AllowOrigins:     "*",
-		AllowCredentials: false,
-		AllowMethods:     "GET,POST,HEAD,PUT,DELETE,PATCH,OPTIONS",
-	}))
 	app.Get("/", indexRoute)
 	routes.InitRouteAPI(app)
 	return app
